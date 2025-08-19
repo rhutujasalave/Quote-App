@@ -73,6 +73,8 @@ fun ListDetails(quote: Quote) {
                     style = MaterialTheme.typography.bodyLarge
                 )
 
+
+
             }
         }
 
