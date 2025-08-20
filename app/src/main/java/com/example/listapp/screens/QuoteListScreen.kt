@@ -16,7 +16,7 @@ import com.example.listapp.models.Quote
 
 
 @Composable
-fun QuoteListScreen(data: Array<Quote>, onClick: () -> Unit) {
+fun QuoteListScreen(data: Array<Quote>, onClick: (quote: Quote) -> Unit) {
     Column {
         Text(
             text = "Quotes App",
@@ -24,12 +24,11 @@ fun QuoteListScreen(data: Array<Quote>, onClick: () -> Unit) {
             modifier = Modifier
                 .padding(8.dp, 24.dp)
                 .fillMaxWidth(1f),
-            style = MaterialTheme.typography.bodySmall,
+            style = MaterialTheme.typography.bodyLarge,
             fontFamily = FontFamily(Font(R.font.resfontmontserrat_regular))
         )
 
-        QuoteList(data = data) {     // data we recived pass to QuoteList
-            onClick()
-        }
+        QuoteList(data = data,onClick)      //we data recived pass to QuoteList
+
     }
 }

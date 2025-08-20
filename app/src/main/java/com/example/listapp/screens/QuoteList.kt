@@ -8,16 +8,12 @@ import com.example.listapp.models.Quote
 //listitem cha used karun list create karnar
 
     @Composable
-    fun QuoteList(data: Array<Quote>, onClick: () -> Unit) {
+    fun QuoteList(data: Array<Quote>, onClick: (quote: Quote) -> Unit) {
         LazyColumn(content = {            // data pass and  all items render to QuoteListItem
             items(data) {
-                QuoteListItem(quote = it) {
-                    onClick()
-                }
+                QuoteListItem(quote = it, onClick)
             }
         })
-        // testing
-        // testing 2
     }
 
 
