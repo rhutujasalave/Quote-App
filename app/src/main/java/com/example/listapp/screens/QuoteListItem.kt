@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FormatQuote
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -27,11 +30,14 @@ import com.example.listapp.models.Quote
 
 
 @Composable
-fun QuoteListItem(quote: Quote,onClick: ()-> Unit) {
+fun QuoteListItem(quote: Quote, onClick: (quote: Quote) -> Unit) {
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFECE3D2) // card colour change
+        ),
         modifier = Modifier
-            .clickable { onClick() }
+            .clickable { onClick(quote) }
             .padding(8.dp)
     ) {
         Row(modifier = Modifier.padding(16.dp))
@@ -54,7 +60,8 @@ fun QuoteListItem(quote: Quote,onClick: ()-> Unit) {
                     modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp)
                 )
                 Box(
-                    modifier = Modifier.background(Color(0xFFEEEEEE))
+                    modifier = Modifier
+                        .background(Color(0xFFEEEEEE))
                         .fillMaxWidth(.4f)    //half line 40% line of width
                         .height(1.dp)
                 )

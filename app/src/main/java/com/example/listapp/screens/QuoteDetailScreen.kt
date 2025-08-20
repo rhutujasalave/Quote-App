@@ -1,5 +1,6 @@
 package com.example.listapp.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,11 +26,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import com.example.listapp.DataManager
 import com.example.listapp.R
 import com.example.listapp.models.Quote
 
 @Composable
-fun ListDetails(quote: Quote) {
+fun QuoteDetailScreen(quote: Quote) {
+
+    BackHandler() {                // for back press handling (on detail page press back then again goto list )
+        DataManager.switchPages(null)
+    }
 
     Box(
         contentAlignment = Alignment.Center,
@@ -72,12 +78,8 @@ fun ListDetails(quote: Quote) {
                     fontFamily = FontFamily(Font(R.font.resfontmontserrat_regular)),
                     style = MaterialTheme.typography.bodyLarge
                 )
-
-
-
             }
         }
-
     }
 
 }

@@ -11,8 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType.Companion.Text
-import com.example.listapp.screens.ListDetails
+import com.example.listapp.screens.QuoteDetailScreen
 import com.example.listapp.screens.QuoteListScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,8 +35,17 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App() {
     if (DataManager.isDataLoaded.value) {                //if data is loaded then render to QuoteListScreen composable
-        QuoteListScreen(data = DataManager.data) {
+
+        if (DataManager.currentPage.value == Pages.LISTING) {
+            QuoteListScreen(data = DataManager.data) {
+                DataManager.switchPages(it)
+            }
         }
+        else {
+            DataManager.currentQuote?.let { QuoteDetailScreen(quote = it) }
+             }
+
+
     } else {                                   // shows loading... screen
         Box(
             contentAlignment = Alignment.Center,
@@ -49,6 +57,8 @@ fun App() {
             )
         }
     }
-
-
+}
+enum class Pages{
+    LISTING,
+    DETAIL
 }
